@@ -255,22 +255,22 @@ export default function Home() {
         <div className="flex min-h-[65vh] w-full items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
             <p>
-              Like most teenagers, I didn’t know who I was, what I wanted from life and what I could contribute to it for a very long time. This was still the case when I signed up for the software engineering program in my university. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it. I classified everything unfamiliar I saw as “hard”, and not “unfamiliar”.
+              Up until joining the software enginering program in my university, my knowledge in computer science didn&apos;t go beyond editing the HTML file of a website from a browser to prank my friends. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it.
             </p>
             <p className="mt-6">
-              But when I started learning, even when it was absolutely necessary because I was failing multiple classes for the 3rd time, I realized that I was way more than what I thought I was, and I started getting straight A’s as a result of my hard work.
+              When I first started the software engineering program, I had the tendency to classify the unfamiliar as &quot;hard&quot;, and not as &quot;unfamiliar&quot;. But when I started putting effort, studying and learning, I realized that I was far more capable than what I thought, and I started getting straight A’s as a result of my hard work.
             </p>
             <p className="mt-6">
-              To further reinforce my love for learning, I pursued extracurricular activities such as learning to code and build Arduino projects by myself, I even tried to form a robotics club at some point and as a result I formed unforgettable memories and invaluable friendships.
+              To further reinforce my love for learning, I pursued extracurricular activities such as learning to code and building Arduino projects by myself, at some point I tried to form a robotics club, and as a result I formed unforgettable memories and invaluable friendships.
             </p>
             <p className="mt-6">
-              But I wasn’t done with extracurricular education yet, when my teacher who then later also became my advisor on my senior capstone project, introduced me to and taught me such an underappreciated and cool topic as neuroscience. It was the perfect opportunity to incorporate my new knowledge of data science, brain signal processing and software engineering skills to conceive my senior capstone project.
+              But I wasn&apos;t done with extracurricular education yet, when my teacher who then later also became my advisor on my senior capstone project, introduced me to and taught me such an underappreciated and cool topic as neuroscience. It was the perfect opportunity to incorporate my software engineering skills with my new knowledge of brain signal processing and data science to conceive my senior capstone project.
             </p>
             <p className='mt-6'>
-              Every day I&apos;m looking for new challenges and opportunities, finding new ideas and building projects to learn new languages and tools, and still reading software engineering books we were taught at college.
+              Looking back, I will never forget the glee I felt when I successfully ran my very first maybe ten-line Python scripts that I had put great effort in at the time. Learning, applying and seeing the operable outcome of my hard work became a pillar in my passion for my profession. It&apos;s still the same glee I feel when I&apos;m working on my current projects. Every day I&apos;m looking for new challenges and opportunities, finding new ideas and building projects to learn new languages and tools, and still reading and taking notes from the software engineering books we were taught at college.
             </p>
             <p className="mt-6">
-              In summary, after a lot of existential crises, hard work, grief and a lot of journaling, I started seeing me for me, what my values and traits were and are. This is still an ongoing process, and I hope it never ends. The further I proceed the further I reinforce and rebuild my values as a person and my love for my profession.
+              Learning and growing, falling and getting back up is still an ongoing process for me, and I hope it never ends. The further I proceed the further I reinforce and rebuild my values as a person and my love for my profession.
             </p>
           </div>
         </div>
@@ -282,7 +282,7 @@ export default function Home() {
         <div className="flex min-h-[65vh] w-full flex-col items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
             <p>
-              Did you know I was a total nerd in college and that I have the best class notes ever and I am willing to share them for free with you? Just choose the following available topics and copy the text beneath and reach out to me via email at <span className="font-bold text-white">selinjoe34@gmail.com</span> or <span className="font-bold text-white">selinuygun2@posta.mu.edu.tr</span>! I&apos;ll be happy to help.
+              Did you know I was a total nerd in college and that I am willing to share my notes for free with you? Just choose the following available topics and copy the text beneath and reach out to me via email at <span className="font-bold text-white">selinjoe34@gmail.com</span> or <span className="font-bold text-white">selinuygun2@posta.mu.edu.tr</span>! I&apos;ll be happy to help.
             </p>
           </div>
 
