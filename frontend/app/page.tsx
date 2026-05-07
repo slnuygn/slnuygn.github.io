@@ -137,7 +137,7 @@ export default function Home() {
   const ribbonLabels = [
     'Timeline',
     // 'Gallery',
-    // 'Info & Contact',
+    'Info & Contact',
     'Who Am I?',
     'Request Notes',
   ]
@@ -231,7 +231,6 @@ export default function Home() {
       )
     }
 
-    /*
     // Info & Contact: show CV preview and download
     if (activeSection === 'Info & Contact') {
       return (
@@ -248,7 +247,6 @@ export default function Home() {
         </div>
       )
     }
-    */
 
     if (activeSection === 'Who Am I?') {
       return (
