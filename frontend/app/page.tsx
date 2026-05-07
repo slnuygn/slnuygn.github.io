@@ -137,9 +137,9 @@ export default function Home() {
   const ribbonLabels = [
     'Timeline',
     // 'Gallery',
-    'Info & Contact',
+    // 'Info & Contact',
     'Who Am I?',
-    'Extras',
+    'Request Notes',
   ]
   const showTimeline = activeSection === 'Timeline'
   const extraTopics = ['Differential Equations', 'Calculus I', 'Calculus II', 'Physics I', 'Physics II', 'Machine Learning','System and Network Programming', 'Discrete Mathematics', 'Fundamentals of Programming Languages', 'Programming II (OOP, Java)', 'Design Patterns', 'Software Testing', 'Numerical Methods', 'Algorithms', 'Data Structures']
@@ -156,7 +156,7 @@ export default function Home() {
     return `${topics.join(', ')}`
   }
 
-  const extrasRequestText = selectedExtraTopics.length === 0 
+  const requestNotesRequestText = selectedExtraTopics.length === 0 
     ? "Hey Selin,\n\nI wouldn't like to request any notes,\n\nbye bye!" 
     : `Hey Selin,\n\nI would like to request the notes for ${formatExtraTopics(selectedExtraTopics)},\n\nthanks!`
 
@@ -168,12 +168,12 @@ export default function Home() {
     )
   }
 
-  const handleCopyExtrasRequest = async () => {
+  const handleCopyRequestNotesRequest = async () => {
     try {
-      await navigator.clipboard.writeText(extrasRequestText)
+      await navigator.clipboard.writeText(requestNotesRequestText)
     } catch {
       const fallbackInput = document.createElement('textarea')
-      fallbackInput.value = extrasRequestText
+      fallbackInput.value = requestNotesRequestText
       fallbackInput.style.position = 'fixed'
       fallbackInput.style.opacity = '0'
       document.body.appendChild(fallbackInput)
@@ -231,58 +231,24 @@ export default function Home() {
       )
     }
 
+    /*
     // Info & Contact: show CV preview and download
     if (activeSection === 'Info & Contact') {
       return (
-        <div className="flex min-h-[65vh] w-full flex-col items-center justify-center px-4 py-8 text-white">
-          <div className="w-full max-w-5xl rounded-3xl border border-white/10 bg-black/20 p-4 shadow-2xl backdrop-blur-sm md:p-6">
-            <div className="flex flex-col gap-3 border-b border-white/10 pb-4 md:flex-row md:items-end md:justify-between">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Info &amp; Contact</h2>
-                <p className="mt-2 text-sm text-white/75">Preview my CV inline, open it in a new tab, or download the PDF directly.</p>
-              </div>
+        <div className="flex min-h-[65vh] flex-col items-center justify-center text-white">
+          <p className="mt-2 text-sm text-white/80">Preview of my CV below. Feel free to download a copy.</p>
 
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={cvFile}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
-                >
-                  Open PDF
-                </a>
-                <a
-                  href={cvFile}
-                  download
-                  className="inline-flex items-center justify-center rounded-full bg-stone-100 px-4 py-2 text-sm font-semibold text-stone-900 transition-colors hover:bg-white"
-                >
-                  Download CV
-                </a>
-              </div>
-            </div>
-
-            <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/95">
-              <object data={cvFile} type="application/pdf" className="h-[70vh] min-h-[560px] w-full">
-                <div className="flex h-[70vh] min-h-[560px] flex-col items-center justify-center gap-4 px-6 text-center text-stone-900">
-                  <p className="text-lg font-semibold">Your browser cannot preview PDFs inline.</p>
-                  <p className="max-w-lg text-sm leading-6 text-stone-700">
-                    Use the button above to open the CV in a new tab or download the file directly.
-                  </p>
-                  <a
-                    href={cvFile}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full bg-stone-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-stone-700"
-                  >
-                    View CV
-                  </a>
-                </div>
-              </object>
-            </div>
+          <div className="w-full max-w-3xl mt-6">
+            <iframe
+              src={cvFile}
+              title="CV Preview"
+              className="w-full h-[560px] rounded-md border border-white/10"
+            />
           </div>
         </div>
       )
     }
+    */
 
     if (activeSection === 'Who Am I?') {
       return (
@@ -311,7 +277,7 @@ export default function Home() {
       )
     }
 
-    if (activeSection === 'Extras') {
+    if (activeSection === 'Request Notes') {
       return (
         <div className="flex min-h-[65vh] w-full flex-col items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
@@ -324,12 +290,12 @@ export default function Home() {
             <div className="relative">
               <div className="flex flex-col gap-6">
                 <div className="flex items-center gap-4 relative">
-                  <label className="text-lg font-semibold text-white" htmlFor="extras-dropdown-trigger">
+                  <label className="text-lg font-semibold text-white" htmlFor="request-notes-dropdown-trigger">
                     I would like to request the notes for:
                   </label>
                   <div className="relative w-80 md:w-64">
                     <button
-                      id="extras-dropdown-trigger"
+                      id="request-notes-dropdown-trigger"
                       type="button"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                       className="w-full flex items-center justify-between rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-white hover:bg-gray-700 transition-colors"
@@ -366,7 +332,7 @@ export default function Home() {
                 <div className="relative rounded-lg border border-dashed border-gray-400 bg-gray-200 px-4 py-3 text-sm leading-7 text-gray-900 whitespace-pre-line">
                   <button
                     type="button"
-                    onClick={handleCopyExtrasRequest}
+                    onClick={handleCopyRequestNotesRequest}
                     aria-label="Copy request text"
                     className="absolute right-3 top-3 rounded-md border border-gray-400 bg-white p-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                   >
@@ -375,7 +341,7 @@ export default function Home() {
                       <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
                     </svg>
                   </button>
-                  {extrasRequestText}
+                  {requestNotesRequestText}
                 </div>
               </div>
             </div>
