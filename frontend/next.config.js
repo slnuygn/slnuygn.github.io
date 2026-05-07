@@ -11,6 +11,9 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   outputFileTracingRoot: path.join(__dirname),
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
     unoptimized: true,
   },

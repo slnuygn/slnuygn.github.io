@@ -2,11 +2,13 @@
 
 import { useLayoutEffect, useRef, useState } from 'react'
 import RotatingAvatar from '@/components/RotatingAvatar'
-const cvFile = '/assets/docs/CV_Selin_Uygun.pdf'
 import Card from '@/components/Card'
 import profile1 from '@/assets/profile/1.jpeg'
 import profile2 from '@/assets/profile/2.jpeg'
 import profile3 from '@/assets/profile/3.jpeg'
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+const cvFile = `${basePath}/assets/docs/CV_Selin_Uygun.pdf`
 
 export default function Home() {
   const timelineContainerRef = useRef<HTMLDivElement>(null)
