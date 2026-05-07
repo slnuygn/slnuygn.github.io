@@ -234,15 +234,51 @@ export default function Home() {
     // Info & Contact: show CV preview and download
     if (activeSection === 'Info & Contact') {
       return (
-        <div className="flex min-h-[65vh] flex-col items-center justify-center text-white">
-          <p className="mt-2 text-sm text-white/80">Preview of my CV below. Feel free to download a copy.</p>
+        <div className="flex min-h-[65vh] w-full flex-col items-center justify-center px-4 py-8 text-white">
+          <div className="w-full max-w-5xl rounded-3xl border border-white/10 bg-black/20 p-4 shadow-2xl backdrop-blur-sm md:p-6">
+            <div className="flex flex-col gap-3 border-b border-white/10 pb-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Info &amp; Contact</h2>
+                <p className="mt-2 text-sm text-white/75">Preview my CV inline, open it in a new tab, or download the PDF directly.</p>
+              </div>
 
-          <div className="w-full max-w-3xl mt-6">
-            <iframe
-              src={cvFile}
-              title="CV Preview"
-              className="w-full h-[560px] rounded-md border border-white/10"
-            />
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={cvFile}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                >
+                  Open PDF
+                </a>
+                <a
+                  href={cvFile}
+                  download
+                  className="inline-flex items-center justify-center rounded-full bg-stone-100 px-4 py-2 text-sm font-semibold text-stone-900 transition-colors hover:bg-white"
+                >
+                  Download CV
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/95">
+              <object data={cvFile} type="application/pdf" className="h-[70vh] min-h-[560px] w-full">
+                <div className="flex h-[70vh] min-h-[560px] flex-col items-center justify-center gap-4 px-6 text-center text-stone-900">
+                  <p className="text-lg font-semibold">Your browser cannot preview PDFs inline.</p>
+                  <p className="max-w-lg text-sm leading-6 text-stone-700">
+                    Use the button above to open the CV in a new tab or download the file directly.
+                  </p>
+                  <a
+                    href={cvFile}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-full bg-stone-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-stone-700"
+                  >
+                    View CV
+                  </a>
+                </div>
+              </object>
+            </div>
           </div>
         </div>
       )
