@@ -19,6 +19,9 @@ export default function Home() {
   const [selectedExtraTopics, setSelectedExtraTopics] = useState<string[]>(['Differential Equations', 'Calculus I'])
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
+  const copyTimeoutRef = useRef<number | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
 
   // Stack behavior: append new cards at the end of timelineCards, they render at the top.
   const renderedTimelineCards = [
@@ -173,6 +176,11 @@ export default function Home() {
   const handleCopyRequestNotesRequest = async () => {
     try {
       await navigator.clipboard.writeText(requestNotesRequestText)
+      setCopied(true)
+      if (copyTimeoutRef.current) {
+        window.clearTimeout(copyTimeoutRef.current)
+      }
+      copyTimeoutRef.current = window.setTimeout(() => setCopied(false), 2000)
     } catch {
       const fallbackInput = document.createElement('textarea')
       fallbackInput.value = requestNotesRequestText
@@ -182,8 +190,22 @@ export default function Home() {
       fallbackInput.select()
       document.execCommand('copy')
       document.body.removeChild(fallbackInput)
+      setCopied(true)
+      if (copyTimeoutRef.current) {
+        window.clearTimeout(copyTimeoutRef.current)
+      }
+      copyTimeoutRef.current = window.setTimeout(() => setCopied(false), 2000)
     }
   }
+
+  // clear timeout on unmount
+  useLayoutEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) {
+        window.clearTimeout(copyTimeoutRef.current)
+      }
+    }
+  }, [])
 
   const renderSectionContent = () => {
     if (showTimeline) {
@@ -254,23 +276,23 @@ export default function Home() {
       return (
         <div className="flex min-h-[65vh] w-full items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
-            <p>
-              Up until joining the software enginering program in my university, my knowledge in computer science didn&apos;t go beyond editing the HTML file of a website from a browser to prank my friends. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it.
+             <p>
+              Up until joining the software enginering program in my university, my knowledge in computer science wasn&apos;t beyond editing the HTML file of a website from a browser to prank my friends. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it.
             </p>
             <p className="mt-6">
               When I first started the software engineering program, I had the tendency to classify the unfamiliar as &quot;hard&quot;, and not as &quot;unfamiliar&quot;. But when I started putting effort, studying and learning, I realized that I was far more capable than what I thought, and I started getting straight A’s as a result of my hard work.
             </p>
             <p className="mt-6">
-              To further reinforce my love for learning, I pursued extracurricular activities such as learning to code and building Arduino projects by myself, at some point I tried to form a robotics club, and as a result I formed unforgettable memories and invaluable friendships.
+              To further reinforce my love for learning, I pursued extracurricular activities such as learning to code and building Arduino projects by myself. At some point I formed a robotics club and even though it was short-lived, I formed unforgettable memories and friendships.
             </p>
             <p className="mt-6">
-              But I wasn&apos;t done with extracurricular education yet, when my teacher who then later also became my advisor on my senior capstone project, introduced me to and taught me such an underappreciated and cool topic as neuroscience. It was the perfect opportunity to incorporate my software engineering skills with my new knowledge of brain signal processing and data science to conceive my senior capstone project.
-            </p>
-            <p className='mt-6'>
-              Looking back, I will never forget the glee I felt when I successfully ran my very first maybe ten-line Python scripts that I had put great effort in at the time. Learning, applying and seeing the operable outcome of my hard work became a pillar in my passion for my profession. It&apos;s still the same glee I feel when I&apos;m working on my current projects. Every day I&apos;m looking for new challenges and opportunities, finding new ideas and building projects to learn new languages and tools, and still reading and taking notes from the software engineering books we were taught at college.
+              But I wasn&apos;t done with extracurricular education yet, when my teacher who then became my advisor on my senior capstone project, introduced me to and taught me such an underappreciated and cool topic as neuroscience. It was the perfect opportunity to incorporate my software engineering skills with my new knowledge of brain signal processing and data science to conceive my senior capstone project.
             </p>
             <p className="mt-6">
-              Learning and growing, falling and getting back up is still an ongoing process for me, and I hope it never ends. The further I proceed the further I reinforce and rebuild my values as a person and my love for my profession.
+              That is how I realized that I like to challenge my software engineering skills on various domains and projects. Seeing the successful outcome of my hard work became one of my great passions in my profession. Every day I&apos;m looking for new challenges and opportunities, finding new ideas and building projects to learn new languages and tools, and still reading and taking notes from the software engineering books we were taught at college.
+            </p>
+            <p className="mt-6">
+              A long and winding road is ahead and I hope the journey never ends. The further I proceed the further I rebuild and reinforce my values as a software engineer.
             </p>
           </div>
         </div>
@@ -300,7 +322,17 @@ export default function Home() {
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                       className="w-full flex items-center justify-between rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 text-white hover:bg-gray-700 transition-colors"
                     >
-                      <span className="text-sm text-gray-400">Search...</span>
+                      <input
+                        id="request-notes-search"
+                        value={searchQuery}
+                        onChange={(e) => {
+                          setSearchQuery(e.target.value)
+                          setIsDropdownOpen(true)
+                        }}
+                        onClick={() => setIsDropdownOpen(true)}
+                        placeholder="Search..."
+                        className="w-full bg-transparent text-sm placeholder:text-gray-400 text-white focus:outline-none"
+                      />
                       <svg
                         className={`w-4 h-4 text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
                         fill="none"
@@ -313,17 +345,23 @@ export default function Home() {
 
                     {isDropdownOpen && (
                       <div className="absolute top-full left-0 right-0 mt-2 max-h-48 space-y-2 overflow-y-auto rounded-lg border border-gray-600 bg-gray-800 p-3 z-10 shadow-lg">
-                        {extraTopics.map((topic) => (
-                          <label key={topic} className="flex cursor-pointer items-center gap-3 rounded px-2 py-1 text-white transition-colors hover:bg-gray-700">
-                            <input
-                              type="checkbox"
-                              checked={selectedExtraTopics.includes(topic)}
-                              onChange={() => handleExtraTopicToggle(topic)}
-                              className="h-4 w-4 cursor-pointer rounded border-gray-500 bg-gray-700"
-                            />
-                            <span className="text-sm">{topic}</span>
-                          </label>
-                        ))}
+                        {extraTopics
+                          .filter((t) => t.toLowerCase().includes(searchQuery.toLowerCase()))
+                          .map((topic) => (
+                            <label key={topic} className="flex cursor-pointer items-center gap-3 rounded px-2 py-1 text-white transition-colors hover:bg-gray-700">
+                              <input
+                                type="checkbox"
+                                checked={selectedExtraTopics.includes(topic)}
+                                onChange={() => handleExtraTopicToggle(topic)}
+                                className="h-4 w-4 cursor-pointer rounded border-gray-500 bg-gray-700"
+                              />
+                              <span className="text-sm">{topic}</span>
+                            </label>
+                          ))}
+
+                        {extraTopics.filter((t) => t.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                          <div className="text-sm text-gray-400 px-2 py-1">No results</div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -334,12 +372,32 @@ export default function Home() {
                     type="button"
                     onClick={handleCopyRequestNotesRequest}
                     aria-label="Copy request text"
-                    className="absolute right-3 top-3 rounded-md border border-gray-400 bg-white p-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
+                    className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-md border border-gray-400 bg-white p-0 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
                   >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4" aria-hidden="true">
-                      <path d="M9 9h10v10H9z" />
-                      <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
-                    </svg>
+                    <span className="relative inline-block h-4 w-4">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        className={`absolute inset-0 m-auto transition-all duration-300 ease-out ${copied ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
+                        aria-hidden="true"
+                      >
+                        <path d="M9 9h10v10H9z" />
+                        <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+                      </svg>
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className={`absolute inset-0 m-auto transition-all duration-300 ease-out ${copied ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
                   </button>
                   {requestNotesRequestText}
                 </div>
