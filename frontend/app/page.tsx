@@ -141,13 +141,14 @@ export default function Home() {
   const avatarImages = [profile1, profile2, profile3]
   const ribbonLabels = [
     'Timeline',
+    'Roadmap',
     // 'Gallery',
     'Info & Contact',
     'Who Am I?',
     'Request Notes',
   ]
   const showTimeline = activeSection === 'Timeline'
-  const extraTopics = ['Differential Equations', 'Calculus I', 'Calculus II', 'Physics I', 'Physics II', 'Machine Learning','System and Network Programming', 'Discrete Mathematics', 'Fundamentals of Programming Languages', 'Programming II (OOP, Java)', 'Design Patterns', 'Software Testing', 'Numerical Methods', 'Algorithms', 'Data Structures']
+  const extraTopics = ['Differential Equations', 'Calculus I', 'Calculus II', 'Physics I', 'Physics II', 'Machine Learning', 'System and Network Programming', 'Discrete Mathematics', 'Fundamentals of Programming Languages', 'Programming II (OOP, Java)', 'Design Patterns', 'Software Testing', 'Numerical Methods', 'Algorithms', 'Data Structures']
 
   const formatExtraTopics = (topics: string[]) => {
     if (topics.length === 0) {
@@ -161,8 +162,8 @@ export default function Home() {
     return `${topics.join(', ')}`
   }
 
-  const requestNotesRequestText = selectedExtraTopics.length === 0 
-    ? "Hey Selin,\n\nI wouldn't like to request any notes,\n\nbye bye!" 
+  const requestNotesRequestText = selectedExtraTopics.length === 0
+    ? "Hey Selin,\n\nI wouldn't like to request any notes,\n\nbye bye!"
     : `Hey Selin,\n\nI would like to request the notes for ${formatExtraTopics(selectedExtraTopics)},\n\nthanks!`
 
   const handleExtraTopicToggle = (topic: string) => {
@@ -224,8 +225,8 @@ export default function Home() {
               index === 0
                 ? topRowRef
                 : index === renderedTimelineCards.length - 1
-                ? bottomRowRef
-                : undefined
+                  ? bottomRowRef
+                  : undefined
 
             return (
               <div
@@ -276,7 +277,7 @@ export default function Home() {
       return (
         <div className="flex min-h-[65vh] w-full items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
-             <p>
+            <p>
               Up until joining the software enginering program in my university, my knowledge in computer science wasn&apos;t beyond editing the HTML file of a website from a browser to prank my friends. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it.
             </p>
             <p className="mt-6">
@@ -403,6 +404,57 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )
+    }
+
+    if (activeSection === 'Roadmap') {
+      const roadmapItems = [
+        { text: 'Read Engineering Software Products by Ian Sommerville', color: 'yellow' },
+        { text: 'Fully Implement the Learning Management System Project', color: 'yellow' },
+        { text: 'Enroll and Get Certification from Microsoft: Foundational C#', color: 'yellow' },
+        { text: 'Enroll and Get Digital Badge from The Linux Foundation: Introduction to Linux (LFS101)', color: 'green' },
+        { text: 'Read Fundamentals of Software Architecture by Mark Richards and Neal Ford', color: 'green' },
+        { text: 'Read Computer Networking: A Top-Down Approach by Kurose and Ross', color: 'green' },
+        { text: 'Get Certification from BTK Academy: Asp.Net Core Web API', color: 'green' },
+        { text: 'Enroll and Get Certification from BTK Academy: DevOps Solutions (Jenkins)', color: 'gray' },
+        { text: 'Enroll and Get Certification from BTK Academy: Kubernetes', color: 'gray' },
+        { text: 'Enroll and Get Certification from BTK Academy: Cloud Computing Architectures', color: 'gray' },
+      ]
+
+      return (
+        <div className="flex min-h-[65vh] w-full flex-col items-center justify-start px-4 py-8 text-white gap-4">
+          <div className="w-full max-w-2xl flex flex-col gap-3">
+            {roadmapItems.map((item, index) => {
+              let outlineColor = ''
+              let statusText = ''
+              let circleColor = ''
+
+              if (item.color === 'green') {
+                outlineColor = 'border-green-300/60'
+                statusText = 'Up Next'
+                circleColor = 'bg-green-300'
+              } else if (item.color === 'yellow') {
+                outlineColor = 'border-yellow-200/60'
+                statusText = 'Ongoing'
+                circleColor = 'bg-yellow-200'
+              } else if (item.color === 'gray') {
+                outlineColor = 'border-gray-500/50'
+                statusText = 'Done'
+                circleColor = 'bg-gray-500'
+              }
+
+              return (
+                <div key={index} className={`w-full rounded-2xl md:rounded-full border-2 ${outlineColor} bg-black p-5 md:px-6 md:py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4`}>
+                  <p className="text-white/85 text-base md:text-lg font-medium leading-relaxed md:leading-snug">{item.text}</p>
+                  <div className="flex items-center gap-3 shrink-0 self-end md:self-auto">
+                    <span className="text-white/60 text-sm font-semibold tracking-wide w-20 text-right">{statusText}</span>
+                    <div className={`h-3 w-3 shrink-0 rounded-full ${circleColor}`}></div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       )
