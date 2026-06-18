@@ -278,7 +278,7 @@ export default function Home() {
         <div className="flex min-h-[65vh] w-full items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
             <p>
-              Up until joining the software enginering program in my university, my knowledge in computer science wasn&apos;t beyond editing the HTML file of a website from a browser to prank my friends. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it.
+              Up until joining the software engineering program in my university, my knowledge in computer science wasn&apos;t beyond editing the HTML file of a website from a browser to prank my friends. I was familiar with the very basics of how to use a computer, but I was neither familiar with developing software nor applying engineering methodologies to it.
             </p>
             <p className="mt-6">
               When I first started the software engineering program, I had the tendency to classify the unfamiliar as &quot;hard&quot;, and not as &quot;unfamiliar&quot;. But when I started putting effort, studying and learning, I realized that I was far more capable than what I thought, and I started getting straight A’s as a result of my hard work.
@@ -305,7 +305,7 @@ export default function Home() {
         <div className="flex min-h-[65vh] w-full flex-col items-center justify-center px-4 py-8 text-white">
           <div className="max-w-3xl text-left text-base leading-8 text-white/85 md:text-lg md:leading-9">
             <p>
-              Did you know I was a total nerd in college and that I am willing to share my notes for free with you? Just choose the following available topics and copy the text beneath and reach out to me via email at <span className="font-bold text-white">selinjoe34@gmail.com</span> or <span className="font-bold text-white">selinuygun2@posta.mu.edu.tr</span>! I&apos;ll be happy to help.
+              Did you know I was a bit of a nerd in college and that I am willing to share my notes for free with you? Just choose the topics you need below, copy the text and reach out to me via email at <span className="font-bold text-white">selinjoe34@gmail.com</span> or <span className="font-bold text-white">selinuygun2@posta.mu.edu.tr</span>! I&apos;ll be happy to help.
             </p>
           </div>
 
