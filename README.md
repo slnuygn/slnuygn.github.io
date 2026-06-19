@@ -1,13 +1,11 @@
-# Hi, I'm Selin! 👋
+# Hi, I'm Selin!
 
 Welcome to the repository for my personal portfolio website. This site serves as a central hub for my projects, timeline, roadmap, and contact information.
 
-![Portfolio Preview](./frontend/public/assets/profile/1.jpeg) <!-- You can replace this with an actual screenshot of your site later -->
-
-## 🚀 Live Site
+## Live Site
 Check out my portfolio here: **[slnuygn.github.io](https://slnuygn.github.io/)**
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 This project is built with modern web technologies:
 - **Framework**: [Next.js](https://nextjs.org/) (React)
@@ -15,14 +13,14 @@ This project is built with modern web technologies:
 - **Deployment**: GitHub Pages (via GitHub Actions)
 - **Language**: TypeScript
 
-## 📂 Project Structure
+## Project Structure
 
 - `frontend/` — The main Next.js application directory.
   - `app/` — Application router, layouts, and pages.
   - `components/` — Reusable React components (sections, navigation, theme provider).
   - `public/` — Static assets (images, icons).
 
-## 💻 Local Development
+## Local Development
 
 If you'd like to run this project locally, follow these steps:
 
@@ -46,5 +44,5 @@ If you'd like to run this project locally, follow these steps:
 4. **View the site:**
    Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## 📝 License
+## License
 This project is open-source and available under the MIT License.
