@@ -1,6 +1,6 @@
 Hi — I'm Selin
 
-A simple personal website built with Next.js and Tailwind CSS.
+A simple personal website built with Tailwind CSS.
 
 Quick start
 
@@ -19,8 +19,6 @@ npm run dev
 
 Structure
 
-- `frontend/` — Next.js app (app directory, components, assets)
+- `frontend/` — app (app directory, components, assets)
 - `components/` — shared React components
 - `public/` — static assets
-
-If you'd like changes or a longer README, tell me what to include.
